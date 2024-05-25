@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import CartItem from './CartItem'; // Ensure that the correct path to CartItem is provided
+import CartItem from './CartItem'; 
 
 
 const Cart = (props) => {
