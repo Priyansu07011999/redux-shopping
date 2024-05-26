@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
-import CartItem from './CartItem'; 
+import CartItem from './CartItem';
 
-
-const Cart = (props) => {
+const Cart = () => {
+  const items = useSelector((state) => state.cart.items);
   const isVisible = useSelector((state) => state.cart.isVisible);
 
   if (!isVisible) {
@@ -13,9 +13,18 @@ const Cart = (props) => {
     <div className="max-w-2xl bg-gray-800 text-white p-4 rounded-lg shadow-md">
       <h2 className="text-xl mb-2">Your Shopping Cart</h2>
       <ul className="list-none p-0 m-0">
-        <CartItem
-          item={{ title: 'Test Item', quantity: 3, total: 18, price: 6 }}
-        />
+        {items.map((item) => (
+          <CartItem
+            key={item.id}
+            item={{
+              id: item.id,
+              title: item.title,
+              quantity: item.quantity,
+              total: item.total,
+              price: item.price,
+            }}
+          />
+        ))}
       </ul>
     </div>
   );
