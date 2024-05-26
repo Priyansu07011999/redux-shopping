@@ -1,7 +1,14 @@
-import Card from '../UI/Card';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../../cartSlice';
+import Card from '../UI/Card'
 
 const ProductItem = (props) => {
-  const { title, price, description } = props;
+  const { id, title, price, description } = props;
+  const dispatch = useDispatch();
+
+  const addToCartHandler = () => {
+    dispatch(addItem({ id, title, price }));
+  };
 
   return (
     <li className="my-4">
@@ -14,7 +21,7 @@ const ProductItem = (props) => {
         </header>
         <p className="text-gray-700">{description}</p>
         <div className="flex justify-end mt-2">
-          <button className="bg-transparent border border-gray-700 text-gray-700 px-4 py-1 rounded hover:bg-gray-600 hover:text-white">
+          <button onClick={addToCartHandler} className="bg-transparent border border-gray-700 text-gray-700 px-4 py-1 rounded hover:bg-gray-600 hover:text-white">
             Add to Cart
           </button>
         </div>
